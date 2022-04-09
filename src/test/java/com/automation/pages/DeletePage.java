@@ -16,8 +16,8 @@ public class DeletePage extends BasePage{
     private List<WebElement> deleteIcons;
 
     @Override
-    public void verifyPage() {
-        Assert.assertTrue("Add User window is missing", deleteConfirmationDialog.isDisplayed());
+    public boolean verifyPage() {
+      return deleteConfirmationDialog.isDisplayed();
     }
 
     public void clickDeleteIcon(int rowNumber) {

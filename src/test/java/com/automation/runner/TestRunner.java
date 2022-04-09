@@ -6,10 +6,10 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src//test//resources//features//UserNameAddition.feature",
+        features = "src//test//resources//features//AddDeleteUser.feature",
         glue = "com.automation.steps",
         //tags = "@Smoke",
-        plugin = {"html:target/index.html", "json:target/cucumber.json"}
+        plugin = {"pretty","html:target/index.html", "json:target/cucumber.json"}
 )
 
 public class TestRunner {

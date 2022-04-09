@@ -55,9 +55,9 @@ public class AddUserPage extends BasePage {
 
 
 
-    public void verifyPage()
+    public boolean verifyPage()
     {
-        Assert.assertTrue("Add User window is missing", popUpAddUser.isDisplayed());
+        return  popUpAddUser.isDisplayed();
     }
 
 

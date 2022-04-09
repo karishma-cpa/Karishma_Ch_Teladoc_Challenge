@@ -18,8 +18,8 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//tr[@class='smart-table-data-row ng-scope']")
     private List<WebElement> tableRows;
 
-    public void verifyPage() {
-        Assert.assertTrue("Add User button is missing from home page", addUserBtn.isDisplayed());
+    public boolean verifyPage() {
+        return  addUserBtn.isDisplayed();
     }
 
     public void clickOnAddUser() {

@@ -8,7 +8,7 @@ public abstract class BasePage {
 
     WebDriver driver;
 
-    public abstract void verifyPage();
+    public abstract boolean verifyPage();
 
     BasePage(){
         driver = DriverUtils.getDriver();

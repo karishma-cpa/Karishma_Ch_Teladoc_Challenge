@@ -1,6 +1,7 @@
 package com.automation.steps;
 
 import com.automation.pages.AddUserPage;
+import com.automation.pages.DeletePage;
 import com.automation.pages.HomePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -8,9 +9,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class UserNameAddition {
+public class AddDeleteUser {
+
     HomePage homePage = new HomePage();
     AddUserPage addUser = new AddUserPage();
+    DeletePage delPage = new DeletePage();
 
     @Given("user is on homepage")
     public void user_Is_On_Homepage() {
@@ -61,7 +64,7 @@ public class UserNameAddition {
 
     @And("^user enters (\\S+) in Email field$")
     public void user_Enters_Email_In_Email_Field(String email) {
-         addUser.enterEmail(email);
+        addUser.enterEmail(email);
     }
 
     @And("^user enters (\\S+) in CellPhone field$")
@@ -78,10 +81,29 @@ public class UserNameAddition {
         Assert.assertTrue(String.format("User %s should be available in table", userName), homePage.isUserAvailable(userName));
     }
 
+    @When("^user click on Delete button for (\\S+) user$")
+    public void userClickOnDeleteButtonForUserNameUser(String str) {
+        homePage.verifyPage();
+        int column = homePage.getColumnNumber("User Name");
+        int row = homePage.getRowNumber(column, str);
+        delPage.clickDeleteIcon(row);
+    }
+
+    @Then("confirmation pop up shows up")
+    public void confirmation_PopUpShows_Up() {
+        delPage.verifyPage();
+    }
 
 
+    @And("user clicks on ok button in the popup")
+    public void user_ClicksOn_OkButton_In_The_Popup() {
+        delPage.deleteUserConfirmation();
+    }
 
-
+    @Then("^verify user (\\S+) information is deleted from the table$")
+    public void verifyUserInformationIsDeletedFromTheTable(String userName) {
+        Assert.assertFalse("Added User is not visible", homePage.isUserAvailable(userName));
+    }
 
 
 }
